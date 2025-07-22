@@ -4,16 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Cyberpunk Calculator</title>
+
+  <!-- Google Fonts for Cyberpunk Style -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
+
+  <!-- Theme Toggle -->
   <div class="theme-toggle">
     <button onclick="toggleTheme()">🌓</button>
   </div>
 
- <div class="title glitch" data-text="CyberCalc: Edgerun Edition">CyberCalc: Edgerun Edition</div>
+  <!-- Title -->
+  <div class="title glitch" data-text="CyberCalc: Edgerun Edition">CyberCalc: Edgerun Edition</div>
 
+  <!-- Calculator Container -->
   <div class="calculator">
     <input type="text" id="display" disabled />
     <div class="buttons">
@@ -21,36 +27,36 @@
       <button onclick="press('8')">8</button>
       <button onclick="press('9')">9</button>
       <button onclick="press('/')">/</button>
-      
+
       <button onclick="press('4')">4</button>
       <button onclick="press('5')">5</button>
       <button onclick="press('6')">6</button>
       <button onclick="press('*')">*</button>
-      
+
       <button onclick="press('1')">1</button>
       <button onclick="press('2')">2</button>
       <button onclick="press('3')">3</button>
       <button onclick="press('-')">-</button>
-      
+
       <button onclick="press('0')">0</button>
       <button onclick="press('.')">.</button>
       <button onclick="calculate()">=</button>
       <button onclick="press('+')">+</button>
-      
+
       <button class="clear" onclick="clearDisplay()">C</button>
     </div>
   </div>
 
-  <!-- Futuristic Button Sound -->
+  <!-- Click Sound -->
   <audio id="click-sound" src="button-click.mp3" preload="auto"></audio>
 
+  <!-- JS Logic -->
   <script>
     const sound = document.getElementById('click-sound');
 
     function press(value) {
       document.getElementById('display').value += value;
-      sound.currentTime = 0;
-      sound.play();
+      playSound();
     }
 
     function calculate() {
@@ -60,12 +66,15 @@
       } catch {
         display.value = "Error";
       }
-      sound.currentTime = 0;
-      sound.play();
+      playSound();
     }
 
     function clearDisplay() {
       document.getElementById('display').value = "";
+      playSound();
+    }
+
+    function playSound() {
       sound.currentTime = 0;
       sound.play();
     }
