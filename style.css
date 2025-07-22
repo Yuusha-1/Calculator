@@ -100,3 +100,86 @@ button.clear:active {
   text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
   font-family: 'Orbitron', sans-serif;
 }
+
+.title {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  font-size: 2em;
+  color: #ffd700;
+  font-family: 'Orbitron', 'Share Tech Mono', monospace;
+  text-shadow: 0 0 5px #ffd700, 0 0 10px #ffdd55, 0 0 20px #ffaa00;
+  animation: flicker 2s infinite;
+}
+
+.glitch {
+  position: relative;
+  color: #ffd700;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #ffcc00;
+  background: transparent;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+}
+
+.glitch::before {
+  animation: glitchTop 1s infinite linear alternate-reverse;
+  color: #fffd6e;
+}
+
+.glitch::after {
+  animation: glitchBottom 1.5s infinite linear alternate-reverse;
+  color: #ffbc00;
+}
+
+@keyframes glitchTop {
+  0% {
+    clip: rect(0, 9999px, 0, 0);
+  }
+  10% {
+    clip: rect(0, 9999px, 20px, 0);
+  }
+  20% {
+    clip: rect(0, 9999px, 0, 0);
+  }
+  30% {
+    clip: rect(5px, 9999px, 25px, 0);
+  }
+  40%, 100% {
+    clip: rect(0, 9999px, 0, 0);
+  }
+}
+
+@keyframes glitchBottom {
+  0% {
+    clip: rect(0, 9999px, 0, 0);
+  }
+  20% {
+    clip: rect(15px, 9999px, 40px, 0);
+  }
+  40% {
+    clip: rect(0, 9999px, 10px, 0);
+  }
+  60% {
+    clip: rect(10px, 9999px, 30px, 0);
+  }
+  80%, 100% {
+    clip: rect(0, 9999px, 0, 0);
+  }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0.85; }
+  60% { opacity: 0.95; }
+  75% { opacity: 0.8; }
+  90% { opacity: 1; }
+}
+
